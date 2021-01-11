@@ -123,8 +123,21 @@ const computeExpectedDuration = ({
     nominal = parseFloat(nominal);
     pessimistic = parseFloat(pessimistic);
     
-    let mu = (optimistic + (4 * nominal) + pessimistic) / 6;
+    const mu = (optimistic + (4 * nominal) + pessimistic) / 6;
 
+    return mu;
+};
+
+const computeStandardDeviation = ({
+    optimistic,
+    nominal,
+    pessimistic
+}) => {
+
+    optimistic = parseFloat(optimistic);
+    pessimistic = parseFloat(pessimistic);
+    
+    const mu = (pessimistic - optimistic) / 6;
 
     return mu;
 };
@@ -171,7 +184,10 @@ export default () => {
                                 nominal: changed[row.id].nominal ? changed[row.id].nominal : row.nominal,
                                 pessimistic: changed[row.id].pessimistic ? changed[row.id].pessimistic : row.pessimistic
                             }),
-                            standardDeviation: "more trash",
+                            standardDeviation: computeStandardDeviation({ 
+                                optimistic: changed[row.id].optimistic ? changed[row.id].optimistic : row.optimistic,
+                                pessimistic: changed[row.id].pessimistic ? changed[row.id].pessimistic : row.pessimistic
+                            }),
                         } 
                         : row
                 );
