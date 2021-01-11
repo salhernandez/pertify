@@ -144,7 +144,6 @@ export default () => {
         setRows(changedRows);
     };
 
-    console.log(rows);
     return (
         <Paper>
             <Grid
