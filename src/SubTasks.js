@@ -25,7 +25,6 @@ import {
 
 import {
     generateRows,
-    defaultColumnValues,
 } from "./demo-data/generator";
 
 const getRowId = row => row.id;
@@ -119,10 +118,7 @@ export default () => {
         { name: "city", title: "City" },
         { name: "car", title: "Car" },
     ]);
-    const [rows, setRows] = useState(generateRows({
-        columnValues: { id: ({ index }) => index, ...defaultColumnValues },
-        length: 8,
-    }));
+    const [rows, setRows] = useState(generateRows());
     const [startEditAction, setStartEditAction] = useState("click");
     const [selectTextOnEditStart, setSelectTextOnEditStart] = useState(true);
 
@@ -148,6 +144,7 @@ export default () => {
         setRows(changedRows);
     };
 
+    console.log(rows);
     return (
         <Paper>
             <Grid
