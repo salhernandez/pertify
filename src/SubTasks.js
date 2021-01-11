@@ -168,6 +168,15 @@ export default () => {
                 ...added.map((row, index) => ({
                     id: startingAddedId + index,
                     ...row,
+                    expectedDuration: computeExpectedDuration({ 
+                        optimistic: row.optimistic,
+                        nominal: row.nominal,
+                        pessimistic: row.pessimistic
+                    }),
+                    standardDeviation: computeStandardDeviation({ 
+                        optimistic: row.optimistic,
+                        pessimistic: row.pessimistic
+                    }),
                 })),
             ];
         }
