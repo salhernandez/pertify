@@ -111,6 +111,22 @@ const FocusableCell = ({ onClick, ...restProps }) => (
     <Table.Cell {...restProps} tabIndex={0} onFocus={onClick} />
 );
 
+const computeExpectedDuration = ({
+    optimistic,
+    nominal,
+    pessimistic
+}) => {
+
+    optimistic = parseFloat(optimistic);
+    nominal = parseFloat(nominal);
+    pessimistic = parseFloat(pessimistic);
+    
+    let mu = (optimistic + (4 * nominal) + pessimistic) / 6;
+
+
+    return mu;
+};
+
 export default () => {
     const [columns] = useState([
         { name: "subtask", title: "Subtask" },
@@ -141,7 +157,23 @@ export default () => {
             ];
         }
         if (changed) {
-            changedRows = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
+            changedRows = rows.map(row => {
+                return (
+                    changed[row.id] 
+                        ? 
+                        { 
+                            ...row,
+                            ...changed[row.id],
+                            expectedDuration: computeExpectedDuration({ 
+                                optimistic: changed[row.id].optimistic ? changed[row.id].optimistic : row.optimistic,
+                                nominal: changed[row.id].nominal ? changed[row.id].nominal : row.nominal,
+                                pessimistic: changed[row.id].pessimistic ? changed[row.id].pessimistic : row.pessimistic
+                            }),
+                            standardDeviation: "more trash",
+                        } 
+                        : row
+                );
+            });
         }
         if (deleted) {
             const deletedSet = new Set(deleted);
