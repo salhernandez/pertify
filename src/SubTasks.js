@@ -15,6 +15,8 @@ import {
     TableHeaderRow,
     TableInlineCellEditing,
     Toolbar,
+    TableEditColumn,
+    TableEditRow
 } from "@devexpress/dx-react-grid-material-ui";
 
 import {
@@ -206,6 +208,8 @@ export default () => {
                     startEditAction={startEditAction}
                     selectTextOnEditStart={selectTextOnEditStart}
                 />
+                <TableEditRow />
+                <TableEditColumn showAddCommand showDeleteCommand />
             </Grid>
         </Paper>
     );
