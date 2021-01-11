@@ -113,14 +113,20 @@ const FocusableCell = ({ onClick, ...restProps }) => (
 
 export default () => {
     const [columns] = useState([
-        { name: "name", title: "Name" },
-        { name: "gender", title: "Gender" },
-        { name: "city", title: "City" },
-        { name: "car", title: "Car" },
+        { name: "subtask", title: "Subtask" },
+        { name: "optimistic", title: "Optimistic" },
+        { name: "nominal", title: "Nominal" },
+        { name: "pessimistic", title: "Pessimistic" },
+        { name: "expectedDuration", title: "μ" },
+        { name: "standardDeviation", title: "σ" },
     ]);
     const [rows, setRows] = useState(generateRows());
     const [startEditAction, setStartEditAction] = useState("click");
     const [selectTextOnEditStart, setSelectTextOnEditStart] = useState(true);
+    const [editingStateColumnExtensions] = useState([
+        { columnName: "expectedDuration", editingEnabled: false },
+        { columnName: "standardDeviation", editingEnabled: false },
+    ]);
 
     const commitChanges = ({ added, changed, deleted }) => {
         let changedRows;
@@ -151,7 +157,10 @@ export default () => {
                 columns={columns}
                 getRowId={getRowId}
             >
-                <EditingState onCommitChanges={commitChanges} />
+                <EditingState 
+                    onCommitChanges={commitChanges}
+                    columnExtensions={editingStateColumnExtensions} 
+                />
                 <Table cellComponent={FocusableCell} />
                 <TableHeaderRow />
                 <Toolbar />
