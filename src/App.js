@@ -3,8 +3,8 @@ import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import React, { Component, Fragment } from "react";
 import SubTasks from "./SubTasks";
-import { Card, CardHeader, Grid, Fab  } from "@material-ui/core";
-import AddIcon from '@material-ui/icons/Add';
+import { Card, CardHeader, Grid, Fab, TextField   } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 
 class App extends Component {
     render(){
@@ -16,14 +16,20 @@ class App extends Component {
                             <Paper elevation={3}>
                                 <Card>
                                     <CardHeader 
-                                        title="Task 1"
+                                        title={
+                                            <TextField 
+                                                id="text"
+                                                type="text"
+                                                placeholder="Task/Project Name"
+                                                label="Task/Project Name"
+                                            />}
                                         subheader={
                                             <Fragment>
                                                 <div>
-                                                    μ: stuff
+                                                    {"μ => sum: ..."}
                                                 </div>
                                                 <div>
-                                                    σ: stuff
+                                                    {"σ => sqrt (sum squared): ..."}
                                                 </div>
                                             </Fragment>
                                         }
@@ -37,14 +43,20 @@ class App extends Component {
                             <Paper elevation={3}>
                                 <Card>
                                     <CardHeader 
-                                        title="Task 1"
+                                        title={
+                                            <TextField 
+                                                id="text"
+                                                type="text"
+                                                placeholder="Task/Project Name"
+                                                label="Task/Project Name"
+                                            />}
                                         subheader={
                                             <Fragment>
                                                 <div>
-                                                    μ: stuff
+                                                    {"μ => sum: ..."}
                                                 </div>
                                                 <div>
-                                                    σ: stuff
+                                                    {"σ => sqrt (sum squared): ..."}
                                                 </div>
                                             </Fragment>
                                         }
