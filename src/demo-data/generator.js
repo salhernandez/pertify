@@ -1,9 +1,12 @@
 export function generateRows() {
     return [{
-        car:"Audi A4",
-        city:"Las Vegas",
-        gender:"Female",
         id:0,
-        name:"Sandra"
+        subtask:"make website",
+        optimistic: "1",
+        nominal: "3",
+        pessimistic: "12",
+        expectedDuration: "4.2",
+        standardDeviation: "1.8"
+
     }];
 }
