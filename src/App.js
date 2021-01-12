@@ -12,7 +12,8 @@ class App extends Component {
         this.state = {
             tasks : [
                 {
-                    label: "some trash",
+                    id: 0,
+                    label: "Task/Project",
                     muSum: "1",
                     sigmaSum: "2"
                 }
@@ -26,9 +27,10 @@ class App extends Component {
             let updatedTasks = [...prevState.tasks];
 
             updatedTasks.push({
-                label: "blah",
-                muSum: "1",
-                sigmaSum: "2"
+                id: (prevState.tasks.length -1 ) + 1,
+                label: "Task/Project",
+                muSum: "3",
+                sigmaSum: "4"
             });
 
             return ({
@@ -66,7 +68,9 @@ class App extends Component {
                                                 </Fragment>
                                             }
                                         />
-                                        <SubTasks/>
+                                        <SubTasks
+                                            hola = {task.id}
+                                        />
                                     </Card>
                                 </Paper>
                             </Grid>
