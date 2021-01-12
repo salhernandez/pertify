@@ -1,5 +1,4 @@
 import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import React, { Component, Fragment } from "react";
 import SubTasks from "./SubTasks";
@@ -7,68 +6,75 @@ import { Card, CardHeader, Grid, Fab, TextField   } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
 class App extends Component {
+    constructor(props){
+        super(props);
+        
+        this.state = {
+            tasks : [
+                {
+                    label: "some trash",
+                    muSum: "1",
+                    sigmaSum: "2"
+                }
+            ]
+        };
+    }
+
+    addTask() {
+        this.setState( prevState => {
+
+            let updatedTasks = [...prevState.tasks];
+
+            updatedTasks.push({
+                label: "blah",
+                muSum: "1",
+                sigmaSum: "2"
+            });
+
+            return ({
+                tasks: updatedTasks
+            });
+        });
+    }
+
     render(){
+        const {tasks} = this.state;
         return (
             <Container>
                 <Grid item xs={12}>
                     <Grid container justify="center" spacing={10}>
-                        <Grid key={0} item>
-                            <Paper elevation={3}>
-                                <Card>
-                                    <CardHeader 
-                                        title={
-                                            <TextField 
-                                                id="text"
-                                                type="text"
-                                                placeholder="Task/Project Name"
-                                                label="Task/Project Name"
-                                            />}
-                                        subheader={
-                                            <Fragment>
-                                                <div>
-                                                    {"μ => sum: ..."}
-                                                </div>
-                                                <div>
-                                                    {"σ => sqrt (sum squared): ..."}
-                                                </div>
-                                            </Fragment>
-                                        }
-                                    />
-                                    <SubTasks/>
-                                </Card>
-                            </Paper>
-                        </Grid>
 
-                        <Grid key={1} item>
-                            <Paper elevation={3}>
-                                <Card>
-                                    <CardHeader 
-                                        title={
-                                            <TextField 
-                                                id="text"
-                                                type="text"
-                                                placeholder="Task/Project Name"
-                                                label="Task/Project Name"
-                                            />}
-                                        subheader={
-                                            <Fragment>
-                                                <div>
-                                                    {"μ => sum: ..."}
-                                                </div>
-                                                <div>
-                                                    {"σ => sqrt (sum squared): ..."}
-                                                </div>
-                                            </Fragment>
-                                        }
-                                    />
-                                    <SubTasks/>
-                                </Card>
-                            </Paper>
-                        </Grid>
+                        {tasks.map((task, index) => (
+                            <Grid key={`subtask-${index}`} item>
+                                <Paper elevation={3}>
+                                    <Card>
+                                        <CardHeader 
+                                            title={
+                                                <TextField 
+                                                    type="text"
+                                                    placeholder={task.label}
+                                                    label={task.label}
+                                                />}
+                                            subheader={
+                                                <Fragment>
+                                                    <div>
+                                                        {`μ => sum: ${task.muSum}`}
+                                                    </div>
+                                                    <div>
+                                                        {`σ => sqrt (sum squared): ${task.sigmaSum}`}
+                                                    </div>
+                                                </Fragment>
+                                            }
+                                        />
+                                        <SubTasks/>
+                                    </Card>
+                                </Paper>
+                            </Grid>
+                        ))}
 
-                        <Grid key={2} item>
-                            <Fab color="primary" aria-label="add">
-                                <AddIcon />
+                        <Grid item>
+                            <Fab color="primary" aria-label="add" onClick={ () => this.addTask() }>
+                                <AddIcon/>
                             </Fab>
                         </Grid>
 
