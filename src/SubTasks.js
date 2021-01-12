@@ -142,7 +142,7 @@ const computeStandardDeviation = ({
     return mu;
 };
 
-export default () => {
+export default (props) => {
     const [columns] = useState([
         { name: "subtask", title: "Subtask" },
         { name: "optimistic", title: "Optimistic" },
@@ -206,6 +206,7 @@ export default () => {
             const deletedSet = new Set(deleted);
             changedRows = rows.filter(row => !deletedSet.has(row.id));
         }
+        props.updateCalculations(props.taskId, changedRows);
         setRows(changedRows);
     };
 

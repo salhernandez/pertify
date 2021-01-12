@@ -39,6 +39,39 @@ class App extends Component {
         });
     }
 
+    updateCalculations = (taskId, estimatesArray) => {
+        
+        this.setState( prevState => {
+
+            const updatedTasks = [...prevState.tasks];
+            // find based on Id
+            const taskToUpdate = prevState.tasks.find((element) => element.id === taskId);
+
+            // calculate estimated time and standard deviation
+            let updatedMuSum = 0;
+            let updatedStandardDeviation = 0;
+            estimatesArray.forEach((element) => {
+                updatedMuSum += element.expectedDuration;
+                updatedStandardDeviation += Math.pow(element.standardDeviation, 2);
+            });
+
+            updatedStandardDeviation = Math.sqrt(updatedStandardDeviation);
+
+            // update object
+            taskToUpdate.muSum = updatedMuSum;
+            taskToUpdate.sigmaSum = updatedStandardDeviation;
+
+            // find and replace object in array
+            const stuff = updatedTasks.findIndex(x => x.id == taskId);
+            updatedTasks[stuff] = taskToUpdate;
+
+
+            return ({
+                tasks: updatedTasks
+            });
+        });
+    }
+
     render(){
         const {tasks} = this.state;
         return (
@@ -69,7 +102,8 @@ class App extends Component {
                                             }
                                         />
                                         <SubTasks
-                                            hola = {task.id}
+                                            taskId = {task.id}
+                                            updateCalculations = {this.updateCalculations}
                                         />
                                     </Card>
                                 </Paper>
