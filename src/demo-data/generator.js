@@ -5,7 +5,7 @@ export function generateRows(taskId) {
             subtask:"make website",
             optimistic: "1",
             nominal: "3",
-            pessimistic: "1",
+            pessimistic: "12",
             expectedDuration: "4.166666666666667",
             standardDeviation: "1.8333333333333333"
         }];
