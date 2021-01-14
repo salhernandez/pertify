@@ -2,8 +2,11 @@ import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import React, { Component, Fragment } from "react";
 import SubTasks from "./SubTasks";
-import { Card, CardHeader, Grid, Fab, TextField   } from "@material-ui/core";
+import { Card, CardHeader, Grid, Fab, TextField, CardActions,IconButton  } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
+
 
 class App extends Component {
     constructor(props){
@@ -105,6 +108,15 @@ class App extends Component {
                                             taskId = {task.id}
                                             updateCalculations = {this.updateCalculations}
                                         />
+                                        <CardActions>
+                                        <Button
+                                            variant="contained"
+                                            color="secondary"
+                                            onClick={ () => console.log("delete task") }
+                                        >
+                                            Delete Task
+                                        </Button>
+                                        </CardActions>
                                     </Card>
                                 </Paper>
                             </Grid>
