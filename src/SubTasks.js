@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import { EditingState } from "@devexpress/dx-react-grid";
 import {
@@ -20,17 +20,22 @@ const FocusableCell = ({ onClick, ...restProps }) => (
     <Table.Cell {...restProps} tabIndex={0} onFocus={onClick} />
 );
 
+const convertToFloat = (num) =>{
+    num = new Number(num);
+    return num;
+}
+
 const computeExpectedDuration = ({
     optimistic,
     nominal,
     pessimistic
 }) => {
 
-    optimistic = parseFloat(optimistic);
-    nominal = parseFloat(nominal);
-    pessimistic = parseFloat(pessimistic);
+    optimistic = convertToFloat(optimistic);
+    nominal = convertToFloat(nominal);
+    pessimistic = convertToFloat(pessimistic);
     
-    const mu = (optimistic + (4 * nominal) + pessimistic) / 6;
+    const mu = (optimistic + (convertToFloat(4)  * nominal) + pessimistic) / (6);
 
     return mu;
 };
@@ -40,10 +45,10 @@ const computeStandardDeviation = ({
     pessimistic
 }) => {
 
-    optimistic = parseFloat(optimistic);
-    pessimistic = parseFloat(pessimistic);
+    optimistic = convertToFloat(optimistic);
+    pessimistic = convertToFloat(pessimistic);
     
-    const mu = (pessimistic - optimistic) / 6;
+    const mu = (pessimistic - optimistic) / convertToFloat(6);
 
     return mu;
 };
@@ -115,6 +120,12 @@ export default (props) => {
         props.updateCalculations(props.taskId, changedRows);
         setRows(changedRows);
     };
+
+    // use this hook instead of componentDidMount, will only re-render
+    // if rows changes
+    useEffect(() => {
+        props.updateCalculations(props.taskId, rows);
+    }, [rows]);
 
     return (
         <Paper>
