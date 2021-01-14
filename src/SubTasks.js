@@ -62,7 +62,7 @@ export default (props) => {
         { name: "expectedDuration", title: "μ" },
         { name: "standardDeviation", title: "σ" },
     ]);
-    const [rows, setRows] = useState(generateRows());
+    const [rows, setRows] = useState(generateRows(props.taskId));
     const [startEditAction] = useState("click");
     const [selectTextOnEditStart] = useState(true);
     const [editingStateColumnExtensions] = useState([
