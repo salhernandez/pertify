@@ -6,8 +6,8 @@ export function generateRows(taskId) {
             optimistic: 1,
             nominal: 3,
             pessimistic: 12,
-            expectedDuration: 4.17,
-            standardDeviation: 1.83
+            expectedDuration: 4.2,
+            standardDeviation: 1.8
         }];
     } else {
         return [{
