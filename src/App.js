@@ -2,11 +2,10 @@ import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import React, { Component, Fragment } from "react";
 import SubTasks from "./SubTasks";
-import { Card, CardHeader, Grid, Fab, TextField, CardActions,IconButton  } from "@material-ui/core";
+import { Card, CardHeader, Grid, Fab, TextField, CardActions } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import DeleteIcon from '@material-ui/icons/Delete';
-import Button from '@material-ui/core/Button';
-import { v4 as uuidv4 } from 'uuid';
+import Button from "@material-ui/core/Button";
+import { v4 as uuidv4 } from "uuid";
 
 
 class App extends Component {
@@ -18,11 +17,33 @@ class App extends Component {
                 {
                     id: "0",
                     label: "Task/Project",
+                    value: "My Task",
                     muSum: "1",
                     sigmaSum: "2"
                 }
             ]
         };
+    }
+
+    updateTaskLabel = (id, event) => {
+        let newValue = event.target.value;
+
+        this.setState( prevState => {
+            const {tasks} = prevState;
+            let updatedTasks = [...tasks];
+
+            const indexToUpdate = updatedTasks.findIndex(item => item.id === id);
+            
+            updatedTasks[indexToUpdate] = {
+                ...updatedTasks[indexToUpdate],
+                value: newValue
+            };
+
+            return ({
+                ...prevState,
+                tasks: updatedTasks
+            });
+        });
     }
 
     addTask() {
@@ -51,8 +72,8 @@ class App extends Component {
             return ({
                 ...prevState,
                 tasks: filteredTasks
-            })
-        })
+            });
+        });
     }
 
     updateCalculations = (taskId, estimatesArray) => {
@@ -79,8 +100,8 @@ class App extends Component {
             updatedStandardDeviation = updatedStandardDeviation.toFixed(1);
 
             // update object
-            taskToUpdate.muSum = updatedMuSum.toString().replace(/^0+/, '');
-            taskToUpdate.sigmaSum = updatedStandardDeviation.toString().replace(/^0+/, '');
+            taskToUpdate.muSum = updatedMuSum.toString().replace(/^0+/, "");
+            taskToUpdate.sigmaSum = updatedStandardDeviation.toString().replace(/^0+/, "");
 
             // find and replace object in array
             const stuff = updatedTasks.findIndex(x => x.id == taskId);
@@ -108,8 +129,10 @@ class App extends Component {
                                             title={
                                                 <TextField 
                                                     type="text"
+                                                    value={task.value ? task.value : undefined}
                                                     placeholder={task.label}
                                                     label={task.label}
+                                                    onChange={(event)=> this.updateTaskLabel(task.id, event)}
                                                 />}
                                             subheader={
                                                 <Fragment>
@@ -127,13 +150,13 @@ class App extends Component {
                                             updateCalculations = {this.updateCalculations}
                                         />
                                         <CardActions>
-                                        <Button
-                                            variant="contained"
-                                            color="secondary"
-                                            onClick={ () => this.deleteTask(task.id) }
-                                        >
-                                            Delete Task
-                                        </Button>
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                onClick={ () => this.deleteTask(task.id) }
+                                            >
+                                                Delete Task
+                                            </Button>
                                         </CardActions>
                                     </Card>
                                 </Paper>
