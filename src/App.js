@@ -61,8 +61,8 @@ class App extends Component {
             updatedStandardDeviation = Math.sqrt(updatedStandardDeviation);
 
             // update object
-            taskToUpdate.muSum = updatedMuSum;
-            taskToUpdate.sigmaSum = updatedStandardDeviation;
+            taskToUpdate.muSum = updatedMuSum.toString().replace(/^0+/, '');
+            taskToUpdate.sigmaSum = updatedStandardDeviation.toString().replace(/^0+/, '');
 
             // find and replace object in array
             const stuff = updatedTasks.findIndex(x => x.id == taskId);
