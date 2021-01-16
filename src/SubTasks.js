@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Paper from "@material-ui/core/Paper";
-import { EditingState } from "@devexpress/dx-react-grid";
+import { 
+    EditingState 
+} from "@devexpress/dx-react-grid";
 import {
     Grid,
     Table,
@@ -127,25 +128,23 @@ export default (props) => {
     }, [rows]);
 
     return (
-        <Paper>
-            <Grid
-                rows={rows}
-                columns={columns}
-                getRowId={getRowId}
-            >
-                <EditingState 
-                    onCommitChanges={commitChanges}
-                    columnExtensions={editingStateColumnExtensions} 
-                />
-                <Table cellComponent={FocusableCell} />
-                <TableHeaderRow />
-                <TableInlineCellEditing
-                    startEditAction={startEditAction}
-                    selectTextOnEditStart={selectTextOnEditStart}
-                />
-                <TableEditRow />
-                <TableEditColumn showAddCommand showDeleteCommand/>
-            </Grid>
-        </Paper>
+        <Grid
+            rows={rows}
+            columns={columns}
+            getRowId={getRowId}
+        >
+            <EditingState 
+                onCommitChanges={commitChanges}
+                columnExtensions={editingStateColumnExtensions} 
+            />
+            <Table cellComponent={FocusableCell} />
+            <TableHeaderRow />
+            <TableInlineCellEditing
+                startEditAction={startEditAction}
+                selectTextOnEditStart={selectTextOnEditStart}
+            />
+            <TableEditRow />
+            <TableEditColumn showAddCommand showDeleteCommand/>
+        </Grid>
     );
 };
