@@ -1,7 +1,7 @@
 export function generateRows(taskId) {
-    if(taskId === 0){
+    if(taskId === "0"){
         return [{
-            id:0,
+            id:"0",
             subtask:"make website",
             optimistic: 1,
             nominal: 3,

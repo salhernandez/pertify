@@ -6,6 +6,7 @@ import { Card, CardHeader, Grid, Fab, TextField, CardActions,IconButton  } from 
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
+import { v4 as uuidv4 } from 'uuid';
 
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
         this.state = {
             tasks : [
                 {
-                    id: 0,
+                    id: "0",
                     label: "Task/Project",
                     muSum: "1",
                     sigmaSum: "2"
@@ -30,7 +31,7 @@ class App extends Component {
             let updatedTasks = [...prevState.tasks];
 
             updatedTasks.push({
-                id: (prevState.tasks.length -1 ) + 1,
+                id: uuidv4(),
                 label: "Task/Project",
                 muSum: "3",
                 sigmaSum: "4"
@@ -40,6 +41,18 @@ class App extends Component {
                 tasks: updatedTasks
             });
         });
+    }
+
+    deleteTask = (idToDelete) => {
+
+        this.setState(prevState => {
+            const {tasks} = prevState;
+            const filteredTasks = tasks.filter(item=>item.id!==idToDelete);
+            return ({
+                ...prevState,
+                tasks: filteredTasks
+            })
+        })
     }
 
     updateCalculations = (taskId, estimatesArray) => {
@@ -87,8 +100,8 @@ class App extends Component {
                 <Grid item xs={12}>
                     <Grid container justify="center" spacing={10}>
 
-                        {tasks.map((task, index) => (
-                            <Grid key={`subtask-${index}`} item>
+                        {tasks.map((task) => (
+                            <Grid key={`subtask-${task.id}`} item>
                                 <Paper elevation={3}>
                                     <Card>
                                         <CardHeader 
@@ -117,7 +130,7 @@ class App extends Component {
                                         <Button
                                             variant="contained"
                                             color="secondary"
-                                            onClick={ () => console.log("delete task") }
+                                            onClick={ () => this.deleteTask(task.id) }
                                         >
                                             Delete Task
                                         </Button>
