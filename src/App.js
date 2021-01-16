@@ -53,12 +53,17 @@ class App extends Component {
             // calculate estimated time and standard deviation
             let updatedMuSum = 0;
             let updatedStandardDeviation = 0;
+
+            // goes through each subtask
             estimatesArray.forEach((element) => {
-                updatedMuSum += element.expectedDuration;
+                updatedMuSum += new Number(element.expectedDuration);
                 updatedStandardDeviation += Math.pow(element.standardDeviation, 2);
             });
 
+            updatedMuSum = updatedMuSum.toFixed(1);
+
             updatedStandardDeviation = Math.sqrt(updatedStandardDeviation);
+            updatedStandardDeviation = updatedStandardDeviation.toFixed(1);
 
             // update object
             taskToUpdate.muSum = updatedMuSum.toString().replace(/^0+/, '');
