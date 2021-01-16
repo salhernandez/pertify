@@ -10,14 +10,6 @@ export function generateRows(taskId) {
             standardDeviation: 1.8
         }];
     } else {
-        return [{
-            id:0,
-            subtask:"",
-            optimistic: "",
-            nominal: "",
-            pessimistic: "",
-            expectedDuration: "",
-            standardDeviation: ""
-        }]
+        return [];
     }
 }
