@@ -3,11 +3,11 @@ export function generateRows(taskId) {
         return [{
             id:0,
             subtask:"make website",
-            optimistic: "1",
-            nominal: "3",
-            pessimistic: "12",
-            expectedDuration: "4.166666666666667",
-            standardDeviation: "1.8333333333333333"
+            optimistic: 1,
+            nominal: 3,
+            pessimistic: 12,
+            expectedDuration: 4.17,
+            standardDeviation: 1.83
         }];
     } else {
         return [{

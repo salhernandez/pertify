@@ -37,7 +37,7 @@ const computeExpectedDuration = ({
     
     const mu = (optimistic + (convertToFloat(4)  * nominal) + pessimistic) / (6);
 
-    return mu;
+    return mu.toFixed(2);
 };
 
 const computeStandardDeviation = ({
@@ -50,8 +50,7 @@ const computeStandardDeviation = ({
     
     const mu = (pessimistic - optimistic) / convertToFloat(6);
 
-    return mu;
-};
+    return mu.toFixed(2);};
 
 export default (props) => {
     const [columns] = useState([
