@@ -9,12 +9,9 @@ import Button from "@material-ui/core/Button";
 import { v4 as uuidv4 } from "uuid";
 const gridSpacing = 10;
 
-var trackingId;
-
 // npm run build runs on "production"
-if (process.env.NODE_ENV === 'production') {
-    trackingId = process.env.REACT_APP_TRACKING_ID;
-    ReactGA.initialize(trackingId);
+if (process.env.NODE_ENV !== 'production') {
+    ReactGA.initialize(process.env.REACT_APP_TRACKING_ID);
 }
 
 
@@ -56,6 +53,12 @@ class App extends Component {
     }
 
     addTask() {
+        
+        ReactGA.event({
+            category: 'CRUD',
+            action: 'Add Task',
+        });
+        
         this.setState( prevState => {
 
             let updatedTasks = [...prevState.tasks];
@@ -74,6 +77,11 @@ class App extends Component {
     }
 
     deleteTask = (idToDelete) => {
+
+        ReactGA.event({
+            category: 'CRUD',
+            action: 'Delete Task',
+        });
 
         this.setState(prevState => {
             const {tasks} = prevState;
@@ -123,10 +131,7 @@ class App extends Component {
     }
 
     componentDidMount(){
-        if (trackingId) {
-            console.log({trackingId})
-            ReactGA.pageview('/homepage');
-        }
+        ReactGA.pageview('/homepage');
     }
 
     render(){
