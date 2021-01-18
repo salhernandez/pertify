@@ -122,7 +122,7 @@ class App extends Component {
                 <Container
                     disableGutters={true}
                     style={{
-                        // grid spacing is base don spacing * 8px
+                        // grid spacing is based on spacing * 8px
                         marginBottom: `${(gridSpacing / 2) * 8}px`
                     }}
                 >
@@ -212,6 +212,20 @@ class App extends Component {
 
                         </Grid>
                     </Grid>
+                </Container>
+                <Container>
+                <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    style={{
+                        // grid spacing is based on spacing * 8px
+                        marginTop: `${(gridSpacing) * 8}px`
+                    }}
+                    // minHeight="100vh"
+                    >
+                        <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                    </Box>
                 </Container>
             </Box>
         );
