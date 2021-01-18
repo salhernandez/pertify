@@ -14,7 +14,6 @@ if (process.env.NODE_ENV === 'production') {
     ReactGA.initialize(process.env.REACT_APP_TRACKING_ID);
 }
 
-
 class App extends Component {
     constructor(props){
         super(props);
