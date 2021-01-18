@@ -1,3 +1,4 @@
+import ReactGA from 'react-ga';
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import React, { Component, Fragment } from "react";
@@ -45,6 +46,11 @@ class App extends Component {
                 tasks: updatedTasks
             });
         });
+    }
+
+    initializeReactGA() {
+        ReactGA.initialize('G-GKZ9F3ZTN3');
+        ReactGA.pageview('/homepage');
     }
 
     addTask() {
