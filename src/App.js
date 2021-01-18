@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 const gridSpacing = 10;
 
 // npm run build runs on "production"
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'production') {
     ReactGA.initialize(process.env.REACT_APP_TRACKING_ID);
 }
 
