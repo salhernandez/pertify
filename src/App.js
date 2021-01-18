@@ -132,19 +132,28 @@ class App extends Component {
                     >
                         PERTify
                     </Typography>
-
-                    <Typography  
-                        variant="subtitle2"
-                        align="center"
-                    >
-                        {"The programmer's estimation best friend"}
-                    </Typography>
-
+                    
                     <Typography  
                         variant="body1"
                         align="center"
                     >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel nulla sit amet magna rhoncus gravida nec quis elit. Quisque eu massa laoreet, varius dolor sed, dignissim tellus. Fusce ut euismod magna. Proin accumsan mi ac risus dictum, at commodo mauris lacinia. Nunc nec ex dignissim, pharetra nibh venenatis, lacinia magna. Nam eget aliquet eros. Donec luctus pharetra porta. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla vel turpis lorem. Proin laoreet, urna in aliquam tincidunt, lacus lectus varius ante, at varius nisl tellus et nisi. Etiam hendrerit, ligula non dictum egestas, ex nulla rhoncus turpis, eu laoreet odio purus et nisl. Nulla in nibh efficitur, luctus nunc eget, viverra purus.
+                        The <a href="https://en.wikipedia.org/wiki/Program_evaluation_and_review_technique"> Project Evaluation and Review Technique (PERT)</a> is a statistical tool used in project management, which was designed to analyze and represent the tasks involved in completing a given project.
+                        The scheme provides a simple and effective way to convert estimates into probability distributions.
+                            <br/>
+                            <br/>
+                            Provide three estimates for a subtask: <b>O</b>ptimistic, <b>N</b>ominal, and <b>P</b>essimistic
+                            <br/>
+                            <b>O</b>ptimistic = Everything goes right
+                            <br/>
+                            <b>N</b>ominal  = Greatest chance of success
+                            <br/>
+                            <b>P</b>essimistic  = Worst case scenario
+                            <br/>
+                            <br/>
+                            Per Substask(<b>row</b>) you will see the calculated probability distribution (<b>μ</b>) and standard deviation of the probability distribution (<b>σ</b>). <b>σ</b> measures how uncertain the task is.
+                            <br/>
+                            At the top left of the card you will find <b>μ sequence</b> which is the sum of all the subtasks&apos; expected duration, and <b>σ sequence</b> which is the standard deviation for all the subtasks.
+                        
                     </Typography>
                 </Container>
 
@@ -167,10 +176,10 @@ class App extends Component {
                                                 subheader={
                                                     <Fragment>
                                                         <div>
-                                                            {`μ => sum: ${task.muSum}`}
+                                                            {`μ sequence: ${task.muSum}`}
                                                         </div>
                                                         <div>
-                                                            {`σ => sqrt (sum squared): ${task.sigmaSum}`}
+                                                            {`σ sequence: ${task.sigmaSum}`}
                                                         </div>
                                                     </Fragment>
                                                 }
