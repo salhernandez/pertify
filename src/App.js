@@ -111,7 +111,7 @@ class App extends Component {
             taskToUpdate.sigmaSequence = updatedStandardDeviation.toString().replace(/^0+/, "");
 
             // find and replace object in array
-            const stuff = updatedTasks.findIndex(x => x.id == taskId);
+            const stuff = updatedTasks.findIndex(x => x.id === taskId);
             updatedTasks[stuff] = taskToUpdate;
 
 
