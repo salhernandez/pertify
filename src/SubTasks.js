@@ -1,3 +1,4 @@
+import ReactGA from 'react-ga'
 import React, { useState, useEffect } from "react";
 import { 
     EditingState 
@@ -13,7 +14,7 @@ import {
 
 import {
     generateRows,
-} from "./demo-data/generator";
+} from "./data/generator";
 
 const getRowId = row => row.id;
 
@@ -73,6 +74,12 @@ export default (props) => {
     const commitChanges = ({ added, changed, deleted }) => {
         let changedRows;
         if (added) {
+
+            ReactGA.event({
+                category: 'CRUD',
+                action: 'Add Subtask',
+            });
+
             const startingAddedId = rows.length > 0 ? rows[rows.length - 1].id + 1 : 0;
             changedRows = [
                 ...rows,
@@ -114,6 +121,12 @@ export default (props) => {
             });
         }
         if (deleted) {
+
+            ReactGA.event({
+                category: 'CRUD',
+                action: 'Delete Subtask',
+            });
+
             const deletedSet = new Set(deleted);
             changedRows = rows.filter(row => !deletedSet.has(row.id));
         }
