@@ -37,7 +37,6 @@ class App extends Component {
 
     updateTaskLabel = (id, event) => {
         let newValue = event.target.value;
-
         this.setState( prevState => {
             const {tasks} = prevState;
             let updatedTasks = [...tasks];
@@ -185,7 +184,7 @@ class App extends Component {
                                                 title={
                                                     <TextField 
                                                         type="text"
-                                                        value={task.value ? task.value : undefined}
+                                                        value={task.value ? task.value : ""}
                                                         placeholder={task.label}
                                                         label={task.label}
                                                         onChange={(event)=> this.updateTaskLabel(task.id, event)}
