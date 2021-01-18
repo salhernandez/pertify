@@ -9,6 +9,14 @@ import Button from "@material-ui/core/Button";
 import { v4 as uuidv4 } from "uuid";
 const gridSpacing = 10;
 
+var trackingId;
+
+// npm run build runs on "production"
+if (process.env.NODE_ENV === 'production') {
+    trackingId = process.env.REACT_APP_TRACKING_ID;
+    ReactGA.initialize(trackingId);
+}
+
 
 class App extends Component {
     constructor(props){
@@ -46,11 +54,6 @@ class App extends Component {
                 tasks: updatedTasks
             });
         });
-    }
-
-    initializeReactGA() {
-        ReactGA.initialize('G-GKZ9F3ZTN3');
-        ReactGA.pageview('/homepage');
     }
 
     addTask() {
@@ -114,11 +117,17 @@ class App extends Component {
             const stuff = updatedTasks.findIndex(x => x.id === taskId);
             updatedTasks[stuff] = taskToUpdate;
 
-
             return ({
                 tasks: updatedTasks
             });
         });
+    }
+
+    componentDidMount(){
+        if (trackingId) {
+            console.log({trackingId})
+            ReactGA.pageview('/homepage');
+        }
     }
 
     render(){
