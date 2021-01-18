@@ -17,10 +17,10 @@ class App extends Component {
             tasks : [
                 {
                     id: "0",
-                    label: "Task/Project",
+                    label: "Task",
                     value: "My Task",
-                    muSum: "1",
-                    sigmaSum: "2"
+                    muSequence: "1",
+                    sigmaSequence: "2"
                 }
             ]
         };
@@ -54,9 +54,9 @@ class App extends Component {
 
             updatedTasks.push({
                 id: uuidv4(),
-                label: "Task/Project",
-                muSum: "3",
-                sigmaSum: "4"
+                label: "Task",
+                muSequence: "3",
+                sigmaSequence: "4"
             });
 
             return ({
@@ -101,8 +101,8 @@ class App extends Component {
             updatedStandardDeviation = updatedStandardDeviation.toFixed(1);
 
             // update object
-            taskToUpdate.muSum = updatedMuSum.toString().replace(/^0+/, "");
-            taskToUpdate.sigmaSum = updatedStandardDeviation.toString().replace(/^0+/, "");
+            taskToUpdate.muSequence = updatedMuSum.toString().replace(/^0+/, "");
+            taskToUpdate.sigmaSequence = updatedStandardDeviation.toString().replace(/^0+/, "");
 
             // find and replace object in array
             const stuff = updatedTasks.findIndex(x => x.id == taskId);
@@ -139,9 +139,11 @@ class App extends Component {
                     >
                         The <a href="https://en.wikipedia.org/wiki/Program_evaluation_and_review_technique"> Project Evaluation and Review Technique (PERT)</a> is a statistical tool used in project management, which was designed to analyze and represent the tasks involved in completing a given project.
                         The scheme provides a simple and effective way to convert estimates into probability distributions.
+                        <br/>
+                        <b>Conveniently, this can also be used to estimate tasks and subtasks!</b>
                             <br/>
                             <br/>
-                            Provide three estimates for a subtask: <b>O</b>ptimistic, <b>N</b>ominal, and <b>P</b>essimistic
+                            Subtask estimates: <b>O</b>ptimistic, <b>N</b>ominal, and <b>P</b>essimistic
                             <br/>
                             <b>O</b>ptimistic = Everything goes right
                             <br/>
@@ -150,7 +152,7 @@ class App extends Component {
                             <b>P</b>essimistic  = Worst case scenario
                             <br/>
                             <br/>
-                            Per Substask(<b>row</b>) you will see the calculated probability distribution (<b>μ</b>) and standard deviation of the probability distribution (<b>σ</b>). <b>σ</b> measures how uncertain the task is.
+                            Per substask(<b>row</b>) you will see the calculated probability distribution (<b>μ</b>) and standard deviation of the probability distribution (<b>σ</b>). <b>σ</b> measures how uncertain the task is.
                             <br/>
                             At the top left of the card you will find <b>μ sequence</b> which is the sum of all the subtasks&apos; expected duration, and <b>σ sequence</b> which is the standard deviation for all the subtasks.
                         
@@ -176,10 +178,10 @@ class App extends Component {
                                                 subheader={
                                                     <Fragment>
                                                         <div>
-                                                            {`μ sequence: ${task.muSum}`}
+                                                            {`μ sequence: ${task.muSequence}`}
                                                         </div>
                                                         <div>
-                                                            {`σ sequence: ${task.sigmaSum}`}
+                                                            {`σ sequence: ${task.sigmaSequence}`}
                                                         </div>
                                                     </Fragment>
                                                 }
