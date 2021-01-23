@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# PERTify
+As I was reading Robert Cecil Martin's [*The Clean Coder*](https://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073) I stumbled upon a section in chapter 10 about estimating tasks. Using [Project Evaluation and Review Technique (PERT)](https://en.wikipedia.org/wiki/Program_evaluation_and_review_technique) you can provide three values for a task: **O**ptimal, **N**ominal, and **P**essimistic, and generate how long it was expected to finish a task. I wanted to try it out, but didn't want to write all the equations when being asked to provide estimates. I could have used any of the PERT calculators out there, but like a typical developer, I set out to create a tool that fitted my needs, hence [PERTify](https://pertify.salhernandez.io/).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+_This application is optimized for desktop screens!_
 
-## Available Scripts
+# Demo
 
-In the project directory, you can run:
+![PERTify gif](https://github.com/salhernandez/pertify/blob/main/media/pertify.gif)
 
-### `yarn start`
+# PERT 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+PERT is a statistical tool used in project management, which was designed to analyze and represent the tasks involved in completing a given project. The scheme provides a simple and effective way to convert estimates into probability distributions. For PERTify, we will be using tasks and subtasks, instead projects and tasks.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+For an in depth explanation of the calculations, please visit [The Clean Coder: Estimation](https://codingjourneyman.com/2014/10/06/the-clean-coder-estimation/), [Wikipedia](https://en.wikipedia.org/wiki/Program_evaluation_and_review_technique) and [LinkedIn](https://www.linkedin.com/pulse/what-pert-how-can-we-use-dave-fourie-pmp-prince2-/).
 
-### `yarn test`
+# PERTify
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For each row (**subtask**) you will see the calculated probability distribution (**μ**) and standard deviation of the probability distribution (**σ**). **σ** measures how uncertain the task is.
+At the top left of the card you will find **μ sequence** which is the sum of all the subtasks' expected duration, and **σ sequence** which is the standard deviation for all the subtasks.
 
-### `yarn build`
+We will using hours as the unit of measurement.
+**Alpha** is estimated to be done in 4.2 (**μ**) hours. However, the estimated time to finish **Alpha**, **Beta**, and **Gamma** is 14.2 (**μ sequence**) hours with a standard deviation of 3.1 (**σ sequence**) hours.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Using the standard deviation we can calculate different estimates:
+- 14.2 hours
+  - **μ sequence** + ( 0 * **σ sequence** )
+- 17.3 hours
+  - **μ sequence** + ( 1 * **σ sequence** )
+- 20.4 hours
+  - **μ sequence** + ( 2 * **σ sequence** )
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The task is set to take 14.2 hours, or 17.3 hours, or 20.4 hours, etc... But will most likely take **14 hours** after rounding down **14.2**.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![PERTify static image](https://github.com/salhernandez/pertify/blob/main/media/pertify.png)
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# What I learned
+- How to use 
+  - [Material-UI](https://material-ui.com/)
+  - [DevExtreme React Grid](https://devexpress.github.io/devextreme-reactive/react/grid/docs/guides/data-formatting/)
+  - [Tag Assistant Chrome Extension to Debug Google Analytics](https://chrome.google.com/webstore/detail/tag-assistant-by-google/kejbdjndbnbjgmefkgdddjlbokphdefk)
+  - [Google Analytics](https://analytics.google.com/)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Links
+- [GitHub Repository](https://github.com/salhernandez/pertify)
+- [PERTify](https://pertify.salhernandez.io/)
+- [The Clean Coder: Estimation](https://codingjourneyman.com/2014/10/06/the-clean-coder-estimation/)
+- [Wikipedia](https://en.wikipedia.org/wiki/Program_evaluation_and_review_technique)
+- [LinkedIn](https://www.linkedin.com/pulse/what-pert-how-can-we-use-dave-fourie-pmp-prince2-/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Development
+- This applications was developed using Node `v14.15.4` and [Create React App](https://reactjs.org/docs/create-a-new-react-app.html)
+- To run application clone repository and run the following commands:
+  - `npm install`
+  - `npm run start`
